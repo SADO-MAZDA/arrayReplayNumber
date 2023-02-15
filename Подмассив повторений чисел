@@ -1,0 +1,53 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Динамический_массив
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int numberInReplay = 0;
+            int quantityNumbersInReplay = 1;
+            int extremeReplay = 0;
+            int[] array = new int[30];
+            Random random = new Random();
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = random.Next(1, 4);
+                Console.Write(array[i] + " ");
+            }
+
+            Console.WriteLine();
+
+            for (int i = 0; i < array.Length - 1; i++)
+            {
+                if(array[i] == array[i + 1])
+                {
+                    quantityNumbersInReplay++;
+                }
+                else if(array[i] != array[i + 1])
+                {
+                    if (extremeReplay < quantityNumbersInReplay)
+                    {
+                        numberInReplay = array[i];
+                        extremeReplay = quantityNumbersInReplay;
+                    }
+                    else if (extremeReplay == quantityNumbersInReplay)
+                    {
+                        numberInReplay = array[i];
+                        Console.Write(numberInReplay + " ");
+                    }
+                    quantityNumbersInReplay = 1;
+                }
+            }
+
+            Console.WriteLine(numberInReplay + " - числo (а) которое повторяется" );
+            Console.WriteLine(extremeReplay + " - максимальное количество повторов");
+        }
+    }
+}
